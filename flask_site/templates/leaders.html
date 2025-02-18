@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Кнопка возврата на главную страницу -->
+<a href="{{ url_for('index') }}">
+    <button>← На главную</button>
+</a>
+
+<!-- Заголовок страницы -->
+<h1>Таблица лидеров</h1>
+<h2>Если вы заходите с телефона, поверните экран горизонтально!</h2>
+<!-- Таблица с данными -->
+<table border="1">
+    {% for row in data %}
+    <tr>
+        {% for cell in row %}
+        <td>{{ cell }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

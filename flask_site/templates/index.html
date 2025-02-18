@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Добро пожаловать на платформу по просмотру расписания и результатов</h1>
+<h1> по турниру по армрестлингу!</h1>
+<h2>Главное меню</h2>
+<div class="menu">
+    <a href="{{ url_for('schedule') }}">
+        <button>Расписание</button>
+    </a>
+    <a href="{{ url_for('leaders') }}">
+        <button>Таблица лидеров</button>
+    </a>
+</div>
+{% endblock %}

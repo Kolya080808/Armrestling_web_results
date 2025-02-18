@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+<a href="{{ url_for('index') }}">← На главную</a>
+<h1>Распределение</h1>
+<h2>Если вы заходите с телефона, поверните экран горизонтально!</h2>
 <table border="1">
     {% for row in data %}
     <tr>

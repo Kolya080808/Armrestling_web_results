@@ -10,7 +10,7 @@ USER_CREDENTIALS = {'admin': 'admin1234'}
 
 def read_csv(filename, folder):
     with open(f'data/{folder}/{filename}') as f:
-        return list(csv.reader(f))
+        return list(csv.reader(f, delimiter=";"))
 
 @app.route('/')
 def index():
@@ -25,7 +25,7 @@ def schedule():
 
 @app.route('/leaders')
 def leaders():
-    with open('data/current_leaderboard.txt') as f:
+    with open('data/current_leaders.txt') as f:
         filename = f.read().strip()
     data = read_csv(filename, 'leaders')
     return render_template('leaders.html', data=data, title="Таблица лидеров")
@@ -44,27 +44,32 @@ def login():
 def admin():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    
+
     if request.method == 'POST':
-        # Обработка загрузки файлов
-        file = request.files['file']
-        if file and file.filename.endswith('.csv'):
-            folder = 'schedules' if 'schedule' in request.form else 'leaders'
-            file.save(f'data/{folder}/{file.filename}')
-        
-        # Обработка удаления файлов
+        # Обработка УДАЛЕНИЯ файла
         if 'delete' in request.form:
             filename = request.form['filename']
-            folder = 'schedules' if 'schedule' in request.form else 'leaders'
-            os.remove(f'data/{folder}/{filename}')
-        
-        # Обработка выбора активного файла
-        if 'set_active' in request.form:
+            folder_type = request.form['folder_type']
+            try:
+                os.remove(f'data/{folder_type}/{filename}')
+            except FileNotFoundError:
+                pass
+
+        # Обработка ВЫБОРА активного файла
+        elif 'set_active' in request.form:
             filename = request.form['filename']
-            folder = 'schedules' if 'schedule' in request.form else 'leaders'
-            with open(f'data/current_{folder}.txt', 'w') as f:
+            folder_type = request.form['folder_type']
+            with open(f'data/current_{folder_type}.txt', 'w') as f:
                 f.write(filename)
-    
+
+        # Обработка ЗАГРУЗКИ файла
+        elif 'file' in request.files:
+            file = request.files['file']
+            if file and file.filename.endswith('.csv'):
+                folder_type = request.form['folder_type']
+                file.save(f'data/{folder_type}/{file.filename}')
+
+    # Остальной код без изменений
     schedules = os.listdir('data/schedules')
     leaders = os.listdir('data/leaders')
     return render_template('admin.html', schedules=schedules, leaders=leaders)

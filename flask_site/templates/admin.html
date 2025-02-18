@@ -1,39 +1,59 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Управление расписаниями</h2>
+<h1>Админка</h1>
+
+
+
+
+<h2>Загрузка расписания</h2>
 <form method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="folder_type" value="schedules">
     <input type="file" name="file">
-    <button type="submit" name="schedule">Загрузить расписание</button>
+    <button type="submit">Загрузить</button>
 </form>
 
-<h3>Список расписаний</h3>
+<h2>Загрузка таблицы лидеров</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="folder_type" value="leaders">
+    <input type="file" name="file">
+    <button type="submit">Загрузить</button>
+</form>
+
+
+
+
+
+<h2>Список расписаний</h2>
 <ul>
     {% for file in schedules %}
     <li>
         {{ file }}
-        <button type="submit" name="delete" value="{{ file }}" form="delete_form">Удалить</button>
-        <button type="submit" name="set_active" value="{{ file }}" form="active_form">Сделать активным</button>
+        <form method="POST" style="display:inline;">
+            <input type="hidden" name="filename" value="{{ file }}">
+            <input type="hidden" name="folder_type" value="schedules">
+            <button type="submit" name="delete">Удалить</button>
+            <button type="submit" name="set_active">Сделать активным</button>
+        </form>
     </li>
     {% endfor %}
 </ul>
 
-<h2>Управление таблицей лидеров</h2>
-<form method="POST" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <button type="submit" name="leaderboard">Загрузить таблицу</button>
-</form>
-
-<h3>Список таблиц</h3>
+<h2>Список таблиц лидеров</h2>
 <ul>
     {% for file in leaders %}
     <li>
         {{ file }}
-        <button type="submit" name="delete" value="{{ file }}" form="delete_form">Удалить</button>
-        <button type="submit" name="set_active" value="{{ file }}" form="active_form">Сделать активным</button>
+        <form method="POST" style="display:inline;">
+            <input type="hidden" name="filename" value="{{ file }}">
+            <input type="hidden" name="folder_type" value="leaders">  <!-- Исправлен folder_type -->
+            <button type="submit" name="delete">Удалить</button>
+            <button type="submit" name="set_active">Сделать активным</button>
+        </form>
     </li>
     {% endfor %}
 </ul>
-
-<form id="delete_form" method="POST"></form>
-<form id="active_form" method="POST"></form>
 {% endblock %}
+
+
+
+
