@@ -13,7 +13,7 @@ USER_CREDENTIALS = {'admin': 'admin1234'}
 
 def read_csv(filename, folder):
     with open(f'data/{folder}/{filename}') as f:
-        return list(csv.reader(f, delimiter=";"))
+        return list(csv.reader(f, delimiter=","))
 
 @app.route('/')
 def index():
@@ -21,7 +21,7 @@ def index():
 
 @app.route('/schedule')
 def schedule():
-    with open('data/current_schedule.txt') as f:
+    with open('data/current_schedules.txt') as f:
         filename = f.read().strip()
     data = read_csv(filename, 'schedules')
     return render_template('schedule.html', data=data, title="Расписание")
