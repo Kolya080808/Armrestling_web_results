@@ -1,21 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Кнопка возврата на главную страницу -->
-<a href="{{ url_for('index') }}">
-    <button>← На главную</button>
-</a>
-
-<!-- Заголовок страницы -->
-<h1>Таблица лидеров</h1>
-<h2>Если вы заходите с телефона, поверните экран горизонтально!</h2>
-<!-- Таблица с данными -->
-<table border="1">
-    {% for row in data %}
-    <tr>
-        {% for cell in row %}
-        <td>{{ cell }}</td>
-        {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
+<div class="parent-div">
+    <div class="frame-1-455 pos-abs">
+        <div class="image-4-1010 pos-abs">
+            <img
+            src=#
+            class = "pos-abs image-div bg-no-repeat fill-parent bg-cover nodeBg-1010"
+            alt="1010 ALT"
+            href="{{ url_for('index') }}"
+            />
+        </div>
+        <div class="rectangle-11-1011 pos-abs"></div>
+        <div class="rectangle-12-1013 pos-abs"></div>
+        <div class="div-1012 pos-abs">
+            <a href="{{ url_for('schedule') }}"><span class="div-1012-0">Расписание</span></a>
+        </div>
+        <div class="div-1014 pos-abs">
+            <span class="div-1014-0">Таблица лидеров</span>
+        </div>
+        <div class="div-1016 pos-abs">
+            <span class="div-1016-0">ТАБЛИЦА ЛИДЕРОВ</span>
+        </div>
+        <div class="rectangle-13-1015 pos-abs">
+            <table border="1">
+                {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
+

@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 import csv
 import os
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
+
+
+
 
 # Простые учетные данные
 USER_CREDENTIALS = {'admin': 'admin1234'}
