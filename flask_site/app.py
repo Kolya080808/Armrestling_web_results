@@ -86,7 +86,7 @@ def logout():
 def results():
     filename = "results.csv"
     data = read_csv(filename, 'results')
-    return render_template('results.html', data=data, title="Результаты")
+    return render_template('tmp_results.html', data=data, title="Результаты")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
