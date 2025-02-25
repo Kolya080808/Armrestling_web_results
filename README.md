@@ -66,16 +66,17 @@ def read_csv(filename, folder):
 
 
 ```python
+
 @app.route('/')
 def index():
     return render_template('index.html', title="Главная страница")
 
 @app.route('/schedule')
 def schedule():
-    with open('data/current_schedule.txt') as f:
+    with open('data/current_schedules.txt') as f:
         filename = f.read().strip()
     data = read_csv(filename, 'schedules')
-    return render_template('schedule.html', data=data, title="Расписание")
+    return render_template('schedule.html', data=data, title="Распределение")
 
 @app.route('/leaders')
 def leaders():
@@ -132,6 +133,12 @@ def admin():
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
+
+@app.route('/results') # Добавил страницу с резами
+def results():
+    filename = "results.csv"
+    data = read_csv(filename, 'results')
+    return render_template('results.html', data=data, title="Результаты")
 ```
 
 Ну и запуск сервера на определенном порте:
@@ -145,12 +152,10 @@ if __name__ == '__main__':
 
 В принципе на этом все, но если вам что-то не понятно, или вы просто хотите поинтересоваться - [создайте issue](https://github.com/Kolya080808/Armrestling_web_results/issues/new), я вам все объясню
 
-
-
-
 Создатели: @Kolya080808, @MihanN1
 
 все было подготовлено: 25.02
 
+последний коммит: 25.02 (а может и нет, посмотрим)
 
 Всем кто читал, спасибо, что зашли :)

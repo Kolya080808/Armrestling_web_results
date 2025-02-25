@@ -24,7 +24,7 @@ def schedule():
     with open('data/current_schedules.txt') as f:
         filename = f.read().strip()
     data = read_csv(filename, 'schedules')
-    return render_template('schedule.html', data=data, title="Расписание")
+    return render_template('schedule.html', data=data, title="Распределение")
 
 @app.route('/leaders')
 def leaders():
@@ -81,6 +81,12 @@ def admin():
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
+
+@app.route('/results')
+def results():
+    filename = "results.csv"
+    data = read_csv(filename, 'results')
+    return render_template('results.html', data=data, title="Результаты")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)

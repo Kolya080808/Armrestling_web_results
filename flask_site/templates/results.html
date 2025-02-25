@@ -9,15 +9,16 @@
             <a href="{{ url_for('schedule') }}"><span class="div-1012-0">Распределение</span></a>
         </div>
         <div class="div-1014 pos-abs">
-            <span class="div-1014-0">Таблица лидеров</span>
+            <a href="{{ url_for('leaders') }}"><span class="div-1014-0">Таблица лидеров</span></a>
         </div>
         <div class="div-1018 pos-abs">
-            <a href="{{ url_for('results') }}"><span class="div-1018-0">Результаты</span></a>
+            <span class="div-1018-0">Результаты</span>
         </div>
         <div class="div-1016 pos-abs">
-            <span class="div-1016-0">ТАБЛИЦА ЛИДЕРОВ</span>
+            <span class="div-1016-0">РЕЗУЛЬТАТЫ</span>
         </div>
         <div class="rectangle-13-1015 pos-abs">
+            <h2 style="margin-left: 600px; font-family: 'Sansation Light', sans-serif; color: #ffffffff;"> РЕЗУЛЬТАТЫ (25.02) </h2>
             <table border="1">
                 {% for row in data %}
                 <tr>
@@ -27,6 +28,8 @@
                 </tr>
                 {% endfor %}
             </table>
+            <h2 style="margin-left: 550px; font-family: 'Sansation Light', sans-serif; color: #ffffffff;"> ВСЕМ СПАСИБО ЗА УЧАСТИЕ! </h2>
+            <h2 style="margin-left: 80px; font-family: 'Sansation Light', sans-serif; color: #ffffffff;"> ОТДЕЛЬНОЕ СПАСИБО: РОМАНОВ АНДРЕЙ БОРИСОВИЧ, БАСКАКОВ АНДРЕЙ НИКОЛАЕВИЧ, КРАВЦОВ МИХАИЛ </h2>
         </div>
     </div>
 </div>
